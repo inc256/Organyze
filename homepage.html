@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organyze - AI Productivity Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7e57c2">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1>Organyze</h1>
+            </div>
+            <div class="user-profile" id="user-profile">
+                <div class="credits">
+                    <i class="fas fa-coins"></i>
+                    <span id="credit-count">150</span> credits
+                </div>
+                <div class="profile-image">
+                    <span id="user-initial">D</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="tab active" data-tab="email">Email</div>
+            <div class="tab" data-tab="letter">Letter</div>
+            <div class="tab" data-tab="report">Report</div>
+            <div class="tab" data-tab="script">Script</div>
+            <div class="tab" data-tab="cv">CV</div>
+            <div class="tab" data-tab="song">Song Lyrics</div>
+            <div class="tab" data-tab="research">Research</div>
+            <div class="tab" data-tab="summarize">Summarize</div>
+            <div class="tab" data-tab="qa">Q&A</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title"><i class="fas fa-pen"></i> Input</h2>
+                
+                <div class="input-group">
+                    <label for="context"><i class="fas fa-align-left"></i> Context/Description</label>
+                    <textarea id="context" placeholder="Describe what you want to create..."></textarea>
+                </div>
+                
+                <div class="input-group" id="tone-group">
+                    <label for="tone"><i class="fas fa-palette"></i> Tone</label>
+                    <select id="tone">
+                        <option>Professional</option>
+                        <option>Casual</option>
+                        <option>Friendly</option>
+                    </select>
+                </div>
+                
+                <div class="input-group" id="type-group" class="hidden">
+                    <!-- Will be populated based on tab selection -->
+                </div>
+                
+                <div class="input-group" id="length-group">
+                    <label for="length"><i class="fas fa-ruler"></i> Length</label>
+                    <select id="length">
+                        <option>Short</option>
+                        <option>Medium</option>
+                        <option>Long</option>
+                    </select>
+                </div>
+                
+                <div class="input-group" id="duration-group" class="hidden">
+                    <label for="duration"><i class="fas fa-clock"></i> Duration (minutes)</label>
+                    <input type="number" id="duration" min="1" max="60" value="3">
+                </div>
+                
+                <div class="input-group" id="stanzas-group" class="hidden">
+                    <label for="stanzas"><i class="fas fa-music"></i> Number of Stanzas</label>
+                    <input type="number" id="stanzas" min="1" max="10" value="2">
+                </div>
+                
+                <div class="input-group" id="upload-group" class="hidden">
+                    <label><i class="fas fa-file-upload"></i> Upload Document</label>
+                    <div class="file-upload" id="file-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <p>PDF, DOC, DOCX, TXT, Images (Max 5MB)</p>
+                        <input type="file" id="file-input" style="display: none;" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
+                    </div>
+                    <div id="file-info"></div>
+                </div>
+                
+                <button id="generate-btn" class="btn"><i class="fas fa-magic"></i> Generate (5 credits)</button>
+            </div>
+            
+            <div class="output-section">
+                <h2 class="section-title"><i class="fas fa-file-alt"></i> Output</h2>
+                
+                <div class="output-content">
+                    <div class="ai-response">Your generated content will appear here. Describe what you need in the input section and click Generate.</div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                    <button class="btn" id="download-btn"><i class="fas fa-download"></i> Download</button>
+                    <button class="btn btn-secondary" id="share-btn"><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="btn btn-secondary" id="save-btn"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="examples">
+            <div class="example-card">
+                <h3>Professional Email</h3>
+                <p>Request a meeting with a client to discuss project updates</p>
+            </div>
+            <div class="example-card">
+                <h3>Formal Business Letter</h3>
+                <p>Write a formal letter to a business partner</p>
+            </div>
+            <div class="example-card">
+                <h3>Sales Report</h3>
+                <p>Summarize Q2 sales performance for the executive team</p>
+            </div>
+            <div class="example-card">
+                <h3>YouTube Script</h3>
+                <p>Create an engaging intro for a productivity tips video</p>
+            </div>
+            <div class="example-card">
+                <h3>Pop Song Lyrics</h3>
+                <p>Write a pop song about summer love</p>
+            </div>
+            <div class="example-card">
+                <h3>Research Summary</h3>
+                <p>Explain quantum computing in simple terms</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Organyze - AI Productivity Assistant © 2023 | All rights reserved</p>
+    </footer>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/homepage.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful');
+        }, function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+</body>
+</html>
